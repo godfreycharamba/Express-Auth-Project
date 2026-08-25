@@ -4,6 +4,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
 
 const dns = require("dns");
 
@@ -14,6 +16,7 @@ dns.setServers([
 
 
 const app = express();
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(express.json())
 app.use(cors())
